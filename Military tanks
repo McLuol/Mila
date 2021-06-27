@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String args[]) {
+		Scanner input = new Scanner(System.in);
+		String moves = input.nextLine();
+		
+		System.out.println(MilliratyCord(moves));
+		
+	}
+	
+	public static String MilliratyCord(String positions) {
+		
+		int x = 0;
+		int y = 0;
+		
+		char IP[] = new char[positions.length()];
+		for(int i=0;i<positions.length();i++) {
+			IP[i] = positions.charAt(i);
+		}
+		for(int i=0; i<positions.length();i++) {
+			if(XorYCord(IP[i]) == "x") {
+				if(IP[i] == 'L') {
+					x--;
+				}
+				if(IP[i]== 'R') {
+					x++;
+				}
+			}
+			if(XorYCord(IP[i]) == "y") {
+				if(IP[i] == 'D') {
+					y--;
+				}
+				if(IP[i] == 'U') {
+					y++;
+				}
+			}
+			
+		}
+		
+		return "("+Integer.toString(x)+","+ Integer.toString(y)+")";
+
+	}
+	
+	public static String XorYCord(char position) {
+		if(position == 'L' || position== 'R' ) {
+			return "x";
+		}
+		else {
+			return "y";
+		}
+	}
+
+}
