@@ -1,0 +1,57 @@
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class Main {
+	
+	private static final DecimalFormat FORMAT = new DecimalFormat("$#.00");
+	public static void main(String args[]) {
+		
+		Scanner input = new Scanner(System.in);  
+		  
+		        
+		String[] string = new String [input.nextInt()];      
+		double total = 0;
+		input.nextLine();   
+		for (int i = 0; i < string.length; i++)   
+		{  
+		string[i] = input.nextLine();  
+		};
+				
+		for(int i =0;i<string.length;i++) {
+			System.out.println(FORMAT.format(price(string[i]))
+					);
+			total+=price(string[i]);
+		}
+		System.out.println("Total:"+FORMAT.format(total));
+	}
+	
+	public static double price(String p) {
+		
+		String[] building = GetValues(p);
+		double price = 0;
+		
+		if(building[0].equals("Residential") ) {
+			price = 0.75*(Integer.parseInt(building[1])*Integer.parseInt(building[2]));
+		}
+		if(building[0].equals("Business") ) {
+			price = 1.25*(Integer.parseInt(building[1])*Integer.parseInt(building[2]));
+		}
+		if(building[0].equals("Mall") ) {
+			price = 2.00*(Integer.parseInt(building[1])*Integer.parseInt(building[2]));
+		}
+	
+		
+		
+		return price;
+	}
+	
+	public static String[] GetValues(String s) {
+		
+		String[] values = s.split(" ");
+		return values;
+	}
+	
+	
+
+
+}
